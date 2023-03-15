@@ -39,6 +39,7 @@
 	</div>
 	<div class="container">
 		<?php $contentview->content_container($thread);?>
+		<?php $contentview->commentholder($threadid, $thread['title']);?>
 	</div>
 	<footer><p style="text-align: center;">All rights reserved @blogspot date:<?php echo date("Y-m-d");?></p></footer>
 	<script type="text/javascript">

@@ -116,10 +116,38 @@ body{
     margin-right: 5%;
     margin-left: 5%;
     padding-top: 10px;
-    padding-right: 5px;
-    padding-left: 5px;
     padding-bottom: 5px;
-    border: 2px goldenrod solid;
+    border: 2px #fff solid;
+    border-radius: 5px;
+}
+
+.comment_holder{
+    display: inline-block;
+    width: 90%;
+    margin-right: 5%;
+    margin-left: 5%;
+    margin-top: 5px;
+    height: 200px;
+    padding-bottom: 5px;
+    border: 2px #fff solid;
+    border-radius: 5px;
+}
+
+#title_of_thread{
+    display: inline-block;
+    width: 100%;
+    height: 50px;
+    background-color: mediumaquamarine;
+    padding-top: 10px;
+    padding-bottom: 5px;
+    border-radius: 5px;
+    border-bottom: 2px #fff solid;;
+}
+
+h3{
+    text-align: left;
+    margin-top: 4.8px;
+    margin-bottom:4.8px;
 }
 
 .image_holder{
