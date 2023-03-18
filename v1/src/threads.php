@@ -7,21 +7,25 @@
 class Threads extends Database
 {
 	protected ?Comments $comments = null;
+    protected ?Reacts $reacts = null;
 	
-	function __construct(Comments $comments)
+	function __construct(Comments $comments, Reacts $reacts)
 	{
 		$this->comments = $comments;
+        $this->reacts = $reacts;
 	}
 
 	public function total_thread_views(int $threadid):int
 	{
 		$total_v = 0;
 		$total ='SELECT viewed FROM `views` WHERE threadid =:threadid';
-		$views = $this->select($total, ['threadid' => $threadid]);
+		$views = $this->select($total, ['threadid' => $threadid], true);
 		if ($views == null) {
 			return $total_v;
 		}
-		$total_v = count($views);
+		foreach ($views as $view ) {
+			$total_v++;
+		}
 		return $total_v;
 	}
 

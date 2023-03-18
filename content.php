@@ -1,6 +1,7 @@
 <?php 
 	include 'v1/src/session.php';
 	include 'v1/src/database.php';
+	include 'v1/src/reacts.php';
 	include 'v1/src/comments.php'; 
 	include 'v1/src/threads.php';
 	include 'v1/view/indexview.php';
@@ -8,19 +9,20 @@
 
 	$database  = new Database();
 	$comments  = new Comments();
-	$threads   = new Threads($comments);
-	$indexview = new IndexView($comments);
-	$contentview = new ContentView($comments);
+	$reacts = new Reacts();
+	$threads   = new Threads($comments, $reacts);
+	$indexview = new IndexView($comments, $reacts);
+	$contentview = new ContentView($comments, $reacts);
 	$session   = new Session();
 
 
 	if (isset($_GET['threadid']) &&  preg_match('#^[0-9]+$#', $_GET['threadid'])) {
 		$threadid = $_GET['threadid'];
 		$thread =  $threads->thread($threadid);
-		$addr = load_config('system_config');
-		if (! $threads->has_viewed_thread($addr['IP_ADDR'], $threadid)) {
+		$sys = load_config('system_config');
+		if (! $threads->has_viewed_thread($sys['IP_ADDR'], $threadid)) {
 			$viewed = ($session->isSession('userid')) ? $session->getSession('username') : 'guest';
-			$threads->view_thread(['threadid' => $threadid, 'viewed' => $viewed, 'title' => $thread['title'], 'address' => $addr['IP_ADDR'], 'dateviewed' => date("Y-m-d")]);
+			$threads->view_thread(['threadid' => $threadid, 'viewed' => $viewed, 'title' => $thread['title'], 'address' => $sys['IP_ADDR'], 'dateviewed' => date("Y-m-d")]);
 		}
 	}
 ?>

@@ -1,14 +1,16 @@
 <?php
 	include 'v1/src/session.php';
 	include 'v1/src/database.php';
+	include 'v1/src/react.php';
 	include 'v1/src/comments.php'; 
 	include 'v1/src/threads.php';
 	include 'v1/view/indexview.php';
 
 	$database  = new Database();
 	$comments  = new Comments();
-	$threads   = new Threads($comments);
-	$indexview = new IndexView($comments);
+	$reacts = new Reacts();
+	$threads   = new Threads($comments, $reacts);
+	$indexview = new IndexView($comments, $reacts);
 	$session   = new Session();
 
  ?>

@@ -28,7 +28,7 @@ class IndexView extends Threads
 	public function container_list_view()
 	{
 		$fps = $this->frontpage_threads();
-		foreach ($fps as $key => $fp) {
+		foreach ($fps as $fp) {
 			$fpid = $fp['threadid'];
 			echo "<li><a href='content.php?threadid=$fpid'>".htmlentities($fp['title'])."</a><p id='details'>views:".$this->total_thread_views($fpid)." created:".$fp['created']." comments:".$this->comments->total_thread_comments($fpid)."</p></li>";
 		}	

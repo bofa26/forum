@@ -9,6 +9,16 @@ body{
     height: 200px;
 }
 
+#reacted{
+    padding: 5px;
+}
+
+#react_total{
+    font-size: 12px;
+    letter-spacing: 3px;
+    color: blue;
+}
+
 #sign{
     padding: 1%;
     border: 2px #ffd solid;
@@ -86,6 +96,63 @@ body{
     font-size: 12px;
 }
 
+.reactions{
+    display: inline-block;
+    width: 30%;
+    height: auto;
+    margin-left: 5%;
+    margin-right: 65%;
+    background-color: #ddd;
+}
+
+#like{
+    padding: 10px;
+    border-radius: 20%;
+    font-size: 12px;
+    color: navy;
+    margin-top: 10px;
+    margin-right: 70px;
+    margin-left: 50px;
+    margin-bottom: 5px;
+    border: 4px slategray solid;
+}
+
+#like:hover{
+    background-color: blue;
+    color: #fff;
+}
+
+#love:hover{
+    background-color: darkred;
+    color: #fff;
+}
+
+#frown:hover{
+    background-color: goldenrod;
+    color: #fff;
+}
+
+#love{
+    padding: 10px;
+    border-radius: 20%;
+    margin-top: 10px;
+    font-size: 12px;
+    color: darkred;
+    margin-right: 70px;
+    margin-bottom: 5px;
+    border: 4px slategray solid;
+}
+
+#frown{
+    padding: 10px;
+    border-radius: 20%;
+    font-size: 12px;
+    color: darkgoldenrod;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    border: 4px slategray solid;
+}
+
 .theme{
     display: block;
     width: 20%;
@@ -127,7 +194,7 @@ body{
     margin-right: 5%;
     margin-left: 5%;
     margin-top: 5px;
-    height: 200px;
+    height: auto;
     padding-bottom: 5px;
     border: 2px #fff solid;
     border-radius: 5px;
@@ -136,18 +203,16 @@ body{
 #title_of_thread{
     display: inline-block;
     width: 100%;
-    height: 50px;
-    background-color: mediumaquamarine;
+    height: 80px;
+    background-color: blanchedalmond;
     padding-top: 10px;
     padding-bottom: 5px;
     border-radius: 5px;
-    border-bottom: 2px #fff solid;;
+    border-bottom: 2px #fff solid;
 }
 
 h3{
     text-align: left;
-    margin-top: 4.8px;
-    margin-bottom:4.8px;
 }
 
 .image_holder{
