@@ -28,4 +28,10 @@ class Session
 		}
 		return false;
 	}
+
+	public function deleteValue(string $name)
+	{
+		$session = $this->getSession($name);
+		unset($session);
+	}
 }

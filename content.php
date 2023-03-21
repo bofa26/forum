@@ -1,19 +1,19 @@
 <?php 
 	include 'v1/src/session.php';
 	include 'v1/src/database.php';
-	include 'v1/src/reacts.php';
+	include 'v1/src/react.php';
 	include 'v1/src/comments.php'; 
 	include 'v1/src/threads.php';
 	include 'v1/view/indexview.php';
 	include 'v1/view/contentview.php';
 
+	$session   = new Session();
 	$database  = new Database();
 	$comments  = new Comments();
 	$reacts = new Reacts();
 	$threads   = new Threads($comments, $reacts);
-	$indexview = new IndexView($comments, $reacts);
-	$contentview = new ContentView($comments, $reacts);
-	$session   = new Session();
+	$indexview = new IndexView($comments, $reacts, $session);
+	$contentview = new ContentView($comments, $reacts, $session);
 
 
 	if (isset($_GET['threadid']) &&  preg_match('#^[0-9]+$#', $_GET['threadid'])) {
@@ -36,7 +36,7 @@
 </head>
 <body>
 	<div class="header">
-		<?php $contentview->header_view($session);?>		
+		<?php $contentview->header_view();?>		
 		<div class="theme"><h2>Blogspot</h2></div>
 	</div>
 	<div class="container">

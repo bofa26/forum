@@ -1,50 +1,43 @@
 <?php 
 
+
 /**
  * 
  */
-class Reacts
+class Reacts extends Database
 {
-
-	public function total_thread_like(int $threadid)
+	
+	public function total_thread_reaction(int $threadid, string $reaction)
 	{
-		$total_l = 0;
-		$total ='SELECT liked FROM `react` WHERE threadid =:threadid';
-		$likes = $this->select($total, ['threadid' => $threadid]);
-		if ($likes == null) {
-			return $total_l;
+		$total ='SELECT reaction FROM `react` WHERE threadid =:threadid AND reaction=:reaction';
+		$reactions = $this->select($total, ['threadid' => $threadid, 'reaction' => $reaction], true);
+		if ($reactions == null) {
+			return $total_r;
 		}
-		foreach ($likes as $like) {
-			$total_l++;
+
+		$total_r = 0;
+
+		foreach ($reactions as $reaction) {
+			$total_r++;
 		}
-		return $total_l;	
+		return $total_r;
 	}
 
-	public function total_thread_love(int $threadid)
+	public function total_comment_reaction(int $threadid, int $commentid, string $react)
 	{
-		$total_lo = 0;
-		$total ='SELECT loved FROM `react` WHERE threadid =:threadid';
-		$loves = $this->select($total, ['threadid' => $threadid]);
-		if ($loves == null) {
-			return $total_lo;
+		$reacts = "SELECT  reaction FROM `comment_react` WHERE threadid=:threadid AND comment_id=:comment_id ORDER BY ASC";
+		$reactions = $this->select($reacts, ['threadid' => $threadid, 'comment_id' => $commentid], true);
+		if ($reactions == null) {
+			return "";
 		}
-		foreach ($loves as $love) {
-			$total_lo++;
-		}
-		return $total_lo;		
-	}
 
-	public function total_thread_frown(int $threadid)
-	{
-		$total_f = 0;
-		$total ='SELECT frown FROM `react` WHERE threadid =:threadid';
-		$frowns = $this->select($total, ['threadid' => $threadid]);
-		if ($frowns == null) {
-			return $total_l;
+		$total_r = 0;
+
+		foreach($reactions as $reaction){
+			if ($reaction === $react) {
+				$total_r++;
+			}
 		}
-		foreach ($frowns as $frown) {
-			$total_f++;
-		}
-		return $total_f;	
+		return $total_r;
 	}
 }

@@ -6,22 +6,24 @@
  */
 class IndexView extends Threads
 {
-	
-	function __construct(Comments $comments)
+	public ?Session $session = null;
+
+	function __construct(Comments $comments, Reacts $reacts, Session $session)
 	{
-		parent::__construct($comments);
+		parent::__construct($comments, $reacts);
+		$this->session = $session;
 	}
 
-	public function header_view(Session $session)
+	public function header_view()
 	{
-		if (! $session->isSession('userid')) {
+		if (! $this->session->isSession('userid')) {
 			echo '<button id="sign">Sign up</button>';
 			echo '<button id="login">Login</button>';
 			echo '<div id="userid"><p id="userd">Guest</p></div>';
 		}else{
 			echo '<button id="logout">Logout</button>';
 			echo '<button id="profile">Profile</button>';
-			echo '<div id="userid"><p id="userd">'.$session->getSession('username').'</p></div>';
+			echo '<div id="userid"><p id="userd">'.$this->session->getSession('username').'</p></div>';
 		}
 	}
 

@@ -6,12 +6,12 @@
 	include 'v1/src/threads.php';
 	include 'v1/view/indexview.php';
 
+	$session   = new Session();
 	$database  = new Database();
 	$comments  = new Comments();
 	$reacts = new Reacts();
 	$threads   = new Threads($comments, $reacts);
-	$indexview = new IndexView($comments, $reacts);
-	$session   = new Session();
+	$indexview = new IndexView($comments, $reacts, $session);
 
  ?>
 <!DOCTYPE html>
@@ -23,7 +23,7 @@
 </head>
 <body>
 	<div class="header">
-		<?php $indexview->header_view($session);?>		
+		<?php $indexview->header_view();?>		
 		<div class="theme"><h2>Blogspot</h2></div>
 	</div>
 	<div class="container">
